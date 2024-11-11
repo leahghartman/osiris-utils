@@ -13,7 +13,7 @@
 #SBATCH --export=ALL
 #SBATCH --partition=standard
 
-#SBATCH --mail-user=qqbruce@umich.edu
+#SBATCH --mail-user=lghart@umich.edu
 #SBATCH --mail-type=BEGIN,END
 
 # The application(s) to execute along with its input arguments and options:
@@ -30,7 +30,7 @@ export INPUTFILE=test-2d
 export RUNTITLE=test
 
 export ROOT_DIR=~/osiris
-export DATA_DIR=/scratch/engin_root/engin/qqbruce/Osiris_Result
+export DATA_DIR=/scratch/engin_root/engin/lghart/Osiris_Result
 
 
 #############################################################################################
