@@ -9,7 +9,7 @@
 #SBATCH --tasks-per-node=5
 #SBATCH --mem-per-cpu=1g
 #SBATCH --time=1:00:00
-#SBATCH --account=engin1
+#SBATCH --account=agrt98
 #SBATCH --export=ALL
 #SBATCH --partition=standard
 
@@ -24,23 +24,23 @@
 
 # select code version here (1D, 2D etc.)
 export DIMS=2D
-export INPUTFILE=test-2d
+export INPUTFILE=~/osutils/decks/base-2d
 
 ## OPTIONAL - CAN BE BLANK, no space
 export RUNTITLE=test
 
 export ROOT_DIR=~/osiris
-export DATA_DIR=/scratch/engin_root/engin/lghart/Osiris_Result
+export DATA_DIR=/scratch/agrt_root/agrt98/lghart/osresults
 
 
 #############################################################################################
 
 export EXEC=osiris-${DIMS}.e
-export DIR_NAME=os4.0_${DIMS}_${RUNTITLE}_${SLURM_JOB_ID%.nyx.engin.umich.edu}
+export DIR_NAME=os4.0_${DIMS}_${RUNTITLE}_${SLURM_JOB_ID}%.nyx.engin.umich.edu
 
 mkdir ${DATA_DIR}/${DIR_NAME}
-cp -f ${ROOT_DIR}/bin/${EXEC} ${DATA_DIR}/${DIR_NAME}/.
-cp -f ${ROOT_DIR}/decks/${INPUTFILE} ${DATA_DIR}/${DIR_NAME}/os-stdin
+cp -f ${ROOT_DIR}/bin/${EXEC} ${DATA_DIR}/${DIR_NAME}
+cp -f ${INPUTFILE} ${DATA_DIR}/${DIR_NAME}/os-stdin
 
 # Create root directory
 cd ${DATA_DIR}/${DIR_NAME}
