@@ -1,0 +1,7 @@
+# OSIRIS profile file for the Great Lakes cluster at the University of Michigan
+
+# Required dependencies
+module load intel
+module load openmpi
+module load hdf5
+module load fftw

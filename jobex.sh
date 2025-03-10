@@ -5,8 +5,8 @@
 #“#SBATCH” directives that convey submission options:
 
 #SBATCH --job-name casc-test
-#SBATCH --nodes=1
-#SBATCH --tasks-per-node=5
+#SBATCH --nodes=2
+#SBATCH --tasks-per-node=20
 #SBATCH --mem-per-cpu=1g
 #SBATCH --time=1:00:00
 #SBATCH --account=agrt98
@@ -24,7 +24,7 @@
 
 # select code version here (1D, 2D etc.)
 export DIMS=2D
-export INPUTFILE=~/osutils/decks/base-2d
+export INPUTFILE=~/osutils/decks/bellaexp
 
 ## OPTIONAL - CAN BE BLANK, no space
 export RUNTITLE=test
