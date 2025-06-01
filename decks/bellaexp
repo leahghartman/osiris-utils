@@ -152,7 +152,7 @@ diag_species {
 !---------- laser profile ---------------
 
 zpulse {	
-  a0              = 2.0,              ! 10^20 I/cm^2  
+  a0              = 0.86,             ! 10^20 I/cm^2  
   omega0          = 6.283,            ! No need to change it if normalised to laser units      
   pol             = 90,               ! Laser polarized in z
   propagation     = "forward",      
@@ -163,7 +163,7 @@ zpulse {
 	
   per_type        = "gaussian",     
   per_center(1:1) = 0.000,
-  per_fwhm(1:1)   = 40,	             ! FWHM of the field. (use per_w0 for FWHM spot size). per_w0 = pwer_fwhm / sqrt(2) =  19.8*0.8um/2sqrt(ln2) = 9.512um
+  per_fwhm(1:1)   = 20,	             ! FWHM of the field. (use per_w0 for FWHM spot size). per_w0 = pwer_fwhm / sqrt(2) =  19.8*0.8um/2sqrt(ln2) = 9.512um
   per_focus       = 100.0,           ! Focal plane position 
 }
 

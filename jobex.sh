@@ -4,7 +4,7 @@
 
 #“#SBATCH” directives that convey submission options:
 
-#SBATCH --job-name casc-test
+#SBATCH --job-name bella-exp
 #SBATCH --nodes=2
 #SBATCH --tasks-per-node=20
 #SBATCH --mem-per-cpu=1g
@@ -24,10 +24,10 @@
 
 # select code version here (1D, 2D etc.)
 export DIMS=2D
-export INPUTFILE=~/osutils/decks/bellaexp
+export INPUTFILE=~/osirisutils/decks/bellaexp
 
 ## OPTIONAL - CAN BE BLANK, no space
-export RUNTITLE=test
+export RUNTITLE=bella-exp
 
 export ROOT_DIR=~/osiris
 export DATA_DIR=/scratch/agrt_root/agrt98/lghart/osresults
@@ -36,7 +36,7 @@ export DATA_DIR=/scratch/agrt_root/agrt98/lghart/osresults
 #############################################################################################
 
 export EXEC=osiris-${DIMS}.e
-export DIR_NAME=os4.0_${DIMS}_${RUNTITLE}_${SLURM_JOB_ID}%.nyx.engin.umich.edu
+export DIR_NAME=os4.0_${DIMS}_${RUNTITLE}_${SLURM_JOB_ID}
 
 mkdir ${DATA_DIR}/${DIR_NAME}
 cp -f ${ROOT_DIR}/bin/${EXEC} ${DATA_DIR}/${DIR_NAME}
