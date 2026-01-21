@@ -1,4 +1,3 @@
-
 ! ---------------------------------------------------
 ! Units normalised to laser units
 ! t0 to To, 2.6685 fs
@@ -11,37 +10,32 @@
 ! laser spot size: 14 um
 ! ---------------------------------------------------
 
-simulation
-{
-n0 = 4.4124355e19,             ! [cm^-3], n0 = nc/4pi^2
+simulation {
+  n0 = 4.4124355e19,             ! [cm^-3], n0 = nc/4pi^2
 }
 
 !----------the node configuration for this simulation----------
-node_conf 
-{
+node_conf  {
   node_number(1:2) = 20, 2, 
   if_periodic(1:2) = .false., .false., 
 }
 
 
 !----------spatial grid----------
-grid 
-{
+grid {
  nx_p(1:2) = 6400, 200,        ! (100um / 0.8um) * 32 = 4000, (100 um / 0.8um) * 4 =  500                 
  coordinates = "cartesian",
 }
 
 
 !----------time step and global data dump timestep number----------
-time_step 
-{
+time_step {
   dt     =  0.01,             ! dt = 0.995 * sqrt[1/(c^2/dx^2 + c^2/dy^2)] / T0 = 0.031
-  ndump  = 10000,               ! 6044 iterations * 0.031 * T0 = 500 fs. The time step for output is 500 fs
+  ndump  = 10000,             ! 6044 iterations * 0.031 * T0 = 500 fs. The time step for output is 500 fs
 }
 
 !----------restart information----------
-restart 
-{
+restart {
   ndump_fac = 0,
   if_restart = .false.,
 }
@@ -49,35 +43,30 @@ restart
 !----------spatial limits of the simulations----------
 !(note that this includes information about
 ! the motion of the simulation box)
-space 
-{
+space {
   xmin(1:2) =    -75.000d0,  -100d0,     ! x1max-x1min = 100um / 0.8um = 125, x1 = x
   xmax(1:2) =    125.0d0,   100d0,     ! x2max-x2min = 100um / 0.8um = 125, x2 = y
   if_move= .true., .false.,             ! Moving window in x
 }
 
 !----------time limits ----------
-time 
-{
+time {
   tmin = 0.0d0, tmax  = 4000,          
 }
 
-el_mag_fld
-{
+el_mag_fld {
  solver = 'fei',
 }
 
 !----------boundary conditions for em-fields ----------
-emf_bound 
-{
+emf_bound {
     type(1:2,1) = "open", "open",     
     type(1:2,2) = "open", "open",  
 }
 
 !----------Solver for em-fields ----------
 
-emf_solver
-{
+emf_solver {
   type = "dual",
   solver_ord = 2,
   n_coef = 16,
@@ -99,23 +88,20 @@ emf_solver
 }
 
 !----------diagnostic for electromagnetic fields---------- 
-diag_emf 
-{
+diag_emf {
   ndump_fac = 1,                      ! write diagnostics information every 1 * 100 fs. 
   reports   = "e1","e2","e3","b1","b2","b3",             ! Output Ex,Ey,Ez and Bz
 }
 
 !----------number of particle species----------
-particles 
-{  
+particles {  
   num_species    = 1,                 ! Backgroud plasma
   !num_neutral    = 1,                 ! Neutral gas, Nitrogen
   interpolation  = "quadratic",
 }
 
 !---------background plasma species------------
-species
-{
+species {
     name           = "plasma",        ! Background plasma, 
     num_par_max    = 8000000,
     rqm            = -1.000,          ! Means 'electron'
@@ -124,33 +110,26 @@ species
     ! add_tag        = .true.,
 }
 
-udist
-{
+udist {
     uth(1:3)       = 0.0000, 0.0000, 0.0000,        ! No thermal distribution, frozen
     ufl(1:3)       = 0.0000, 0.0000, 0.0000,        ! No fluid momentum
 }
 
-profile
-{
+profile {
     density        = 0.0227,                         ! Plasma density is 1e18 cm^-3, so density = 1e18 / 4.4124355e19 = 0.0227
 
     profile_type(1:2) = "math func" , ,                
 
     math_func_expr = "(1.0*(x1>100.0)*(x1<180.0)*((x1-100.0)/80.0)
                       +1.0*(x1>=180)*(x1<15000)+1.0*(x1>=15000)*(x1<15080)*((-x1+15080.0)/80.0))",
-
-
 }
 
-spe_bound
-{
+spe_bound {
     type(1:2,1) = "open", "open",
     type(1:2,2) = "open", "open",
 }
 
-diag_species 
-{
-  
+diag_species {  
   ndump_fac = 1,
   reports = "charge",                  ! Output charge density for background plasma      
 
@@ -166,8 +145,7 @@ diag_species
 !
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-!neutral
-!{
+!neutral {
 !  name = "NeutralHigh",
 !  neutral_gas = "N",
 !  multi_min = 3,
@@ -175,43 +153,35 @@ diag_species
 !  inject_line = .true.,
 !}
 
-!profile
-!{
-!    density        = 0.0227,                         ! Plasma density is 1e18 cm^-3, so density = 1e18 / 4.4124355e19 = 0.0227
-
+!profile {
+!    density        = 0.0227,             ! Plasma density is 1e18 cm^-3, so density = 1e18 / 4.4124355e19 = 0.0227
 !    profile_type(1:2) = "math func" , ,                
-
 !    math_func_expr = "0.01*(1.0*(x1>100.0)*(x1<180.0)*((x1-100.0)/80.0)
 !                      +1.0*(x1>=180)*(x1<15000)+1.0*(x1>=15000)*(x1<15080)*((-x1+15080.0)/80.0))",
 !}
 
-!species
-!{
+!species {
 !    name           = "eHigh",
 !    num_par_max    = 12584000,
 !    rqm            = -1.000,
 !    num_par_x(1:2) = 2, 2,
 !}
 
-!spe_bound
-!{
+!spe_bound {
 !    type(1:2,1) = "open", "open",
 !    type(1:2,2) = "open", "open",
 !}
 
-
-!diag_species
-!{ 
+!diag_species { 
 !  ndump_fac = 1,
 !  reports = "charge",
-  
+
 !  ndump_fac_raw = 1, 
-  !raw_gamma_limit = 10.0,
-  !raw_math_expr = "p1 > 50.0",
+!  raw_gamma_limit = 10.0,
+!  raw_math_expr = "p1 > 50.0",
 !}
 
-zpulse
-{
+zpulse {
 	
 	a0              = 2.0,              ! 10^20 I/cm^2  
 	omega0          = 6.283,            ! No need to change it if normalised to laser units      
@@ -222,7 +192,6 @@ zpulse
     lon_x0          = 97.4,             ! Peak position, put the peak at x1 = 100*0.8 = 80 um
     lon_range       = 45.0,             ! Determines where the laser pulse got truncated, 45 * T0 = 120 fs, 60 fs on each side of the peak
 	
-
     per_type        = "gaussian",     
     per_center(1:1) = 0.000,
     per_fwhm(1:1)   = 40,           ! FWHM of the field. (use per_w0 for FWHM spot size). per_w0 = pwer_fwhm / sqrt(2) =  19.8*0.8um/2sqrt(ln2) = 9.512um

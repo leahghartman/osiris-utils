@@ -62,7 +62,7 @@ If you forget this step, these modules will not be loaded and compilation or exe
 Clone the OSIRIS repository from GitHub:
 
 ```bash
-git clone https://github.com/Hi-PACE/hipace.git $HOME/hipace
+git clone https://github.com/GoLP-IST/osiris.git
 ```
 
 This only needs to be done once, unless you want to update to a newer version later.
@@ -121,7 +121,7 @@ OSIRIS simulations are controlled by text-based input files that are sometimes r
 
 If you are unfamiliar with the format, you can start here: [OSIRIS Documentation](https://osiris-code.github.io/documentation/input_format). 
 
-An example input deck is provided in this repository under ```decks/plasma-prof```. 
+An example input deck is provided in this repository under ```decks/base-wake-2d```. 
 
 You can copy and modify this file for your own simulations.
 
