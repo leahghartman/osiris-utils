@@ -113,7 +113,7 @@ For most users, **production** is what you want. The **debug** and **profile** b
 
 ### 6. Running the Code
 
-#### <u>Input Files ("Decks")</u>
+#### <ins>Input Files ("Decks")</ins>
 
 OSIRIS simulations are controlled by text-based input files that are sometimes referred to as **input decks**.
 
@@ -121,7 +121,7 @@ If you are unfamiliar with the format, you can start here: [OSIRIS Documentation
 
 An example input deck is provided in this repository under ```decks/base-wake-2d```. You can copy and modify this file for your own simulations.
 
-#### <u>Batch Scripts and Job Submission</u>
+#### <ins>Batch Scripts and Job Submission</ins>
 
 On Great Lakes, simulations are run using **SLURM batch jobs**. You do *not* run OSIRIS directly on the login node.
 
