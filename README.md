@@ -55,7 +55,7 @@ Every time you login and want to work with OSIRIS, run:
 source profile.osiris
 ```
 
-If you forget this step, these modules will not be loaded and compilation or execution will fail with confusing errors. Alternatively, you can remember which modules to load and do so upon logging into Great Lakes.
+If you forget this step, these modules will not be loaded and compilation or execution will fail with confusing errors. Alternatively, you can remember which modules to load and do so every time you login to Great Lakes.
 
 ### 3. Downloading the OSIRIS Source Code
 
@@ -65,7 +65,7 @@ Clone the OSIRIS repository from GitHub:
 git clone https://github.com/GoLP-IST/osiris.git
 ```
 
-This only needs to be done once, unless you want to update to a newer version later.
+This only needs to be done once, unless you want to update to a newer version later. If you need access to the ```dev/``` branch for a newer version of the code, ask your advisor!
 
 ### 4. Configuring the Build
 
@@ -91,19 +91,17 @@ The general format is:
 ./configure -s osiris_sys.greatlakes.intel -d 1
 ```
 
-The ```-s``` flag selects a system-specific configuration file, and the ```-d``` flag sets the simulation dimensionality. If you later want to switch between 1D, 2D, or 3D, you mush recompile the code.
+The ```-s``` flag selects a system-specific configuration file, and the ```-d``` flag sets the simulation dimensionality. If you later want to switch between 1D, 2D, or 3D, you must recompile the code.
 
 ### 5. Compiling OSIRIS
 
-Once configured, compile the code by running:
+Once configured, you can compile the code by running:
 
 ```bash
 make
 ```
 
-This builds the default (production) version of the code. 
-
-You can also explicitly choose dimensions and build type:
+This builds the default (production) version of the code. You can also explicitly choose the dimensions and build type:
 
 ```bash
 make 1d production
@@ -115,26 +113,24 @@ For most users, **production** is what you want. The **debug** and **profile** b
 
 ### 6. Running the Code
 
-#### Input Files ("Decks")
+#### <u>Input Files ("Decks")</u>
 
 OSIRIS simulations are controlled by text-based input files that are sometimes referred to as **input decks**.
 
 If you are unfamiliar with the format, you can start here: [OSIRIS Documentation](https://osiris-code.github.io/documentation/input_format). 
 
-An example input deck is provided in this repository under ```decks/base-wake-2d```. 
+An example input deck is provided in this repository under ```decks/base-wake-2d```. You can copy and modify this file for your own simulations.
 
-You can copy and modify this file for your own simulations.
-
-#### Batch Scripts and Job Submission
+#### <u>Batch Scripts and Job Submission</u>
 
 On Great Lakes, simulations are run using **SLURM batch jobs**. You do *not* run OSIRIS directly on the login node.
 
 The file ```jobex.sh``` is a fully working example batch script. You typically only need to edit the section marked:
 
 ```bash
-#############################################################################################
+########################################################################################
 # EDIT BELOW HERE
-#############################################################################################
+########################################################################################
 ```
 
 You'll likely need to change:
@@ -143,17 +139,15 @@ You'll likely need to change:
 - ```RUNTITLE```: optional label for your run
 - ```DATA_DIR```: where simulation output will be stored
 
-The script creates a new run directory, copies the OSIRIS executable and input file, and launches the simulation using MPI.
+This script creates a new run directory, copies the OSIRIS executable and input file, and launches the simulation using MPI.
 
 #### Submitting a Job
 
-Once your batch script is ready, submit it with:
+Once your batch script is ready, you can submit it with:
 
 ```bash
 sbatch jobex.sh
 ```
 
-SLURM will queue your job and run it when resources are available.
-
-You can monitor the job's status by just typing ```sq```.
+SLURM will queue your job and run it when resources are available. You can monitor the job's status by just typing ```sq```.
 
