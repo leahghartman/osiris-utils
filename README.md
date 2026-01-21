@@ -88,7 +88,7 @@ The general format is:
 **Example: Great Lakes (1D)**
 
 ```bash
-./configure -s osiris_sys.greatlakes.intel -d 1
+./configure -s greatlakes.intel -d 1
 ```
 
 The ```-s``` flag selects a system-specific configuration file, and the ```-d``` flag sets the simulation dimensionality. If you later want to switch between 1D, 2D, or 3D, you must recompile the code.
