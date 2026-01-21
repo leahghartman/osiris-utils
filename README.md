@@ -141,7 +141,7 @@ You'll likely need to change:
 
 This script creates a new run directory, copies the OSIRIS executable and input file, and launches the simulation using MPI.
 
-#### Submitting a Job
+#### <ins>Submitting a Job</ins>
 
 Once your batch script is ready, you can submit it with:
 
